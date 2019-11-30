@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccxg.mapper.TbStudentMapper">
+  <resultMap id="BaseResultMap" type="com.ccxg.entity.TbStudent">
+    <id column="Student_ID" jdbcType="VARCHAR" property="studentId" />
+    <result column="Student_Name" jdbcType="VARCHAR" property="studentName" />
+    <result column="Student_Sex" jdbcType="CHAR" property="studentSex" />
+    <result column="Grade" jdbcType="INTEGER" property="grade" />
+    <result column="Class_ID" jdbcType="INTEGER" property="classId" />
+    <result column="Major_ID" jdbcType="VARCHAR" property="majorId" />
+    <result column="Major_Name" jdbcType="VARCHAR" property="majorName" />
+    <result column="Department_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="Department_Name" jdbcType="VARCHAR" property="departmentName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Student_ID, Student_Name, Student_Sex, Grade, Class_ID, Major_ID, Major_Name, Department_ID, 
+    Department_Name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_student
+    where Student_ID = #{studentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_student
+    where Student_ID = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="Student_ID" keyProperty="studentId" parameterType="com.ccxg.entity.TbStudent" useGeneratedKeys="true">
+    insert into tb_student (Student_Name, Student_Sex, Grade, 
+      Class_ID, Major_ID, Major_Name, 
+      Department_ID, Department_Name)
+    values (#{studentName,jdbcType=VARCHAR}, #{studentSex,jdbcType=CHAR}, #{grade,jdbcType=INTEGER}, 
+      #{classId,jdbcType=INTEGER}, #{majorId,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, 
+      #{departmentId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="Student_ID" keyProperty="studentId" parameterType="com.ccxg.entity.TbStudent" useGeneratedKeys="true">
+    insert into tb_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentName != null">
+        Student_Name,
+      </if>
+      <if test="studentSex != null">
+        Student_Sex,
+      </if>
+      <if test="grade != null">
+        Grade,
+      </if>
+      <if test="classId != null">
+        Class_ID,
+      </if>
+      <if test="majorId != null">
+        Major_ID,
+      </if>
+      <if test="majorName != null">
+        Major_Name,
+      </if>
+      <if test="departmentId != null">
+        Department_ID,
+      </if>
+      <if test="departmentName != null">
+        Department_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentName != null">
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentSex != null">
+        #{studentSex,jdbcType=CHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="majorId != null">
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null">
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccxg.entity.TbStudent">
+    update tb_student
+    <set>
+      <if test="studentName != null">
+        Student_Name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentSex != null">
+        Student_Sex = #{studentSex,jdbcType=CHAR},
+      </if>
+      <if test="grade != null">
+        Grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        Class_ID = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="majorId != null">
+        Major_ID = #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="majorName != null">
+        Major_Name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        Department_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        Department_Name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Student_ID = #{studentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccxg.entity.TbStudent">
+    update tb_student
+    set Student_Name = #{studentName,jdbcType=VARCHAR},
+      Student_Sex = #{studentSex,jdbcType=CHAR},
+      Grade = #{grade,jdbcType=INTEGER},
+      Class_ID = #{classId,jdbcType=INTEGER},
+      Major_ID = #{majorId,jdbcType=VARCHAR},
+      Major_Name = #{majorName,jdbcType=VARCHAR},
+      Department_ID = #{departmentId,jdbcType=VARCHAR},
+      Department_Name = #{departmentName,jdbcType=VARCHAR}
+    where Student_ID = #{studentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

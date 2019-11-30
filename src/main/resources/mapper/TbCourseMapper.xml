@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccxg.mapper.TbCourseMapper">
+  <resultMap id="BaseResultMap" type="com.ccxg.entity.TbCourse">
+    <id column="Course_Name" jdbcType="VARCHAR" property="courseName" />
+    <id column="Major_ID" jdbcType="VARCHAR" property="majorId" />
+    <id column="Grade" jdbcType="INTEGER" property="grade" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.ccxg.entity.TbCourse">
+    delete from tb_course
+    where Course_Name = #{courseName,jdbcType=VARCHAR}
+      and Major_ID = #{majorId,jdbcType=VARCHAR}
+      and Grade = #{grade,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ccxg.entity.TbCourse">
+    insert into tb_course (Course_Name, Major_ID, Grade
+      )
+    values (#{courseName,jdbcType=VARCHAR}, #{majorId,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ccxg.entity.TbCourse">
+    insert into tb_course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseName != null">
+        Course_Name,
+      </if>
+      <if test="majorId != null">
+        Major_ID,
+      </if>
+      <if test="grade != null">
+        Grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseName != null">
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null">
+        #{majorId,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

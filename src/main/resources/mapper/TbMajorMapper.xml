@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccxg.mapper.TbMajorMapper">
+  <resultMap id="BaseResultMap" type="com.ccxg.entity.TbMajor">
+    <id column="Major_ID" jdbcType="VARCHAR" property="majorId" />
+    <result column="Major_Name" jdbcType="VARCHAR" property="majorName" />
+    <result column="Department_ID" jdbcType="VARCHAR" property="departmentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Major_ID, Major_Name, Department_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_major
+    where Major_ID = #{majorId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_major
+    where Major_ID = #{majorId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="Major_ID" keyProperty="majorId" parameterType="com.ccxg.entity.TbMajor" useGeneratedKeys="true">
+    insert into tb_major (Major_Name, Department_ID)
+    values (#{majorName,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="Major_ID" keyProperty="majorId" parameterType="com.ccxg.entity.TbMajor" useGeneratedKeys="true">
+    insert into tb_major
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="majorName != null">
+        Major_Name,
+      </if>
+      <if test="departmentId != null">
+        Department_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="majorName != null">
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccxg.entity.TbMajor">
+    update tb_major
+    <set>
+      <if test="majorName != null">
+        Major_Name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        Department_ID = #{departmentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Major_ID = #{majorId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccxg.entity.TbMajor">
+    update tb_major
+    set Major_Name = #{majorName,jdbcType=VARCHAR},
+      Department_ID = #{departmentId,jdbcType=VARCHAR}
+    where Major_ID = #{majorId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccxg.mapper.TbDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.ccxg.entity.TbDepartment">
+    <id column="Department_ID" jdbcType="VARCHAR" property="departmentId" />
+    <result column="Department_Name" jdbcType="VARCHAR" property="departmentName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Department_ID, Department_Name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_department
+    where Department_ID = #{departmentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_department
+    where Department_ID = #{departmentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="Department_ID" keyProperty="departmentId" parameterType="com.ccxg.entity.TbDepartment" useGeneratedKeys="true">
+    insert into tb_department (Department_Name)
+    values (#{departmentName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="Department_ID" keyProperty="departmentId" parameterType="com.ccxg.entity.TbDepartment" useGeneratedKeys="true">
+    insert into tb_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentName != null">
+        Department_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccxg.entity.TbDepartment">
+    update tb_department
+    <set>
+      <if test="departmentName != null">
+        Department_Name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Department_ID = #{departmentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccxg.entity.TbDepartment">
+    update tb_department
+    set Department_Name = #{departmentName,jdbcType=VARCHAR}
+    where Department_ID = #{departmentId,jdbcType=VARCHAR}
+  </update>
+</mapper>
