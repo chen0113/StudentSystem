@@ -5,12 +5,14 @@ import com.ccxg.entity.TbStudent;
 import com.ccxg.mapper.TbCourseMapper;
 import com.ccxg.service.TbCourseService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 public class TbCourseServiceImpl implements TbCourseService {
     @Resource
     private TbCourseMapper tbCourseMapper;

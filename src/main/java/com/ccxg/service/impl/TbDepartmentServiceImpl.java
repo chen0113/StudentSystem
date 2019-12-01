@@ -4,11 +4,13 @@ import com.ccxg.entity.TbDepartment;
 import com.ccxg.mapper.TbDepartmentMapper;
 import com.ccxg.service.TbDepartmentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional
 public class TbDepartmentServiceImpl implements TbDepartmentService {
     @Resource
     private TbDepartmentMapper tbDepartmentMapper;

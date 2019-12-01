@@ -1,13 +1,17 @@
 package com.ccxg.mapper;
 
 import com.ccxg.entity.TbMajor;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 public interface TbMajorMapper {
-    @Select("select * from tb_major where Department_ID = departmentId")
-    List<TbMajor> selectAll(String departmentId);
+    @Select("select * from tb_major where Department_ID = #{departmentId}")
+    List<TbMajor> selectAll(@Param("departmentId") String departmentId);
+
+    @Select("select * from tb_major where Major_ID = #{majorId}")
+    TbMajor selectById(@Param("majorId") String majorId);
 
     int deleteByPrimaryKey(String majorId);
 

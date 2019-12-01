@@ -4,11 +4,13 @@ import com.ccxg.entity.TbMajor;
 import com.ccxg.mapper.TbMajorMapper;
 import com.ccxg.service.TbMajorService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional
 public class TbMajorServiceImpl implements TbMajorService {
 
     @Resource
@@ -18,6 +20,11 @@ public class TbMajorServiceImpl implements TbMajorService {
     public List<TbMajor> findByDepartmentId(String departmentId) {
         List<TbMajor> list = tbMajorMapper.selectAll(departmentId);
         return list;
+    }
+
+    @Override
+    public TbMajor selectById(String majorId) {
+        return tbMajorMapper.selectById(majorId);
     }
 
     @Override

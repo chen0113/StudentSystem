@@ -16,7 +16,7 @@ public interface TbCourseMapper {
 
     int insertSelective(TbCourse record);
 
-    @Select("select Course_Name from tb_course where Major_ID=#{majorId} and Grade=#{grade}")
+    @Select("select Course_Name from tb_course where Major_ID = #{majorId} and Grade = #{grade}")
     List<String> selectByCourse(TbCourse course);
 
     List<TbCourse> search(TbCourse course);

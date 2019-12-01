@@ -137,10 +137,10 @@
     from tb_student
     <where>
       <if test="departmentId != null">
-        Department_ID = #{departmentId,jdbcType=VARCHAR}
+        Department_ID like #{departmentId,jdbcType=VARCHAR}
       </if>
       <if test="departmentName != null">
-        and Department_Name = #{departmentName,jdbcType=VARCHAR}
+        and Department_Name like #{departmentName,jdbcType=VARCHAR}
       </if>
     </where>
 

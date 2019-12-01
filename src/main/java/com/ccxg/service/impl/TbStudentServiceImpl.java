@@ -4,11 +4,13 @@ import com.ccxg.entity.TbStudent;
 import com.ccxg.mapper.TbStudentMapper;
 import com.ccxg.service.TbStudentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional
 public class TbStudentServiceImpl implements TbStudentService {
     @Resource
     private TbStudentMapper tbStudentMapper;

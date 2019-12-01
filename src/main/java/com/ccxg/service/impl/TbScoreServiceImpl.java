@@ -6,11 +6,13 @@ import com.ccxg.mapper.TbScoreMapper;
 import com.ccxg.mapper.TbStudentMapper;
 import com.ccxg.service.TbScoreService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional
 public class TbScoreServiceImpl implements TbScoreService {
 
     @Resource
