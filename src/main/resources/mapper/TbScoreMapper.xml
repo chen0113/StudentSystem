@@ -1,82 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ccxg.mapper.TbScoreMapper">
-  <resultMap id="BaseResultMap" type="com.ccxg.entity.TbScore">
-    <id column="Course_Name" jdbcType="VARCHAR" property="courseName" />
-    <id column="Student_Id" jdbcType="VARCHAR" property="studentId" />
-    <result column="Student_Name" jdbcType="VARCHAR" property="studentName" />
-    <result column="Score" jdbcType="DECIMAL" property="score" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    Course_Name, Student_Id, Student_Name, Score
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="com.ccxg.entity.TbScore" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_score
-    where Course_Name = #{courseName,jdbcType=VARCHAR}
-      and Student_Id = #{studentId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.ccxg.entity.TbScore">
-    delete from tb_score
-    where Course_Name = #{courseName,jdbcType=VARCHAR}
-      and Student_Id = #{studentId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.ccxg.entity.TbScore">
-    insert into tb_score (Course_Name, Student_Id, Student_Name, 
-      Score)
-    values (#{courseName,jdbcType=VARCHAR}, #{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, 
-      #{score,jdbcType=DECIMAL})
-  </insert>
-  <insert id="insertSelective" parameterType="com.ccxg.entity.TbScore">
-    insert into tb_score
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="courseName != null">
-        Course_Name,
-      </if>
-      <if test="studentId != null">
-        Student_Id,
-      </if>
-      <if test="studentName != null">
-        Student_Name,
-      </if>
-      <if test="score != null">
-        Score,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="courseName != null">
-        #{courseName,jdbcType=VARCHAR},
-      </if>
-      <if test="studentId != null">
-        #{studentId,jdbcType=VARCHAR},
-      </if>
-      <if test="studentName != null">
-        #{studentName,jdbcType=VARCHAR},
-      </if>
-      <if test="score != null">
-        #{score,jdbcType=DECIMAL},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ccxg.entity.TbScore">
-    update tb_score
-    <set>
-      <if test="studentName != null">
-        Student_Name = #{studentName,jdbcType=VARCHAR},
-      </if>
-      <if test="score != null">
-        Score = #{score,jdbcType=DECIMAL},
-      </if>
-    </set>
-    where Course_Name = #{courseName,jdbcType=VARCHAR}
-      and Student_Id = #{studentId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ccxg.entity.TbScore">
-    update tb_score
-    set Student_Name = #{studentName,jdbcType=VARCHAR},
-      Score = #{score,jdbcType=DECIMAL}
-    where Course_Name = #{courseName,jdbcType=VARCHAR}
-      and Student_Id = #{studentId,jdbcType=VARCHAR}
-  </update>
+
+    <select id="selectByStudent" parameterType="com.ccxg.entity.TbScore" resultType="com.ccxg.entity.TbScore">
+        select * from tb_score
+        <where>
+            <if test="studentId != null">
+                and Student_ID = #{studentId}
+            </if>
+            <if test="studentName != null">
+                and Student_Name = #{studentName}
+            </if>
+            <if test="courseName != null">
+                and Course_Name = #{courseName}
+            </if>
+        </where>
+    </select>
+
 </mapper>

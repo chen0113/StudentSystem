@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TbCourseServiceImpl implements TbCourseService {
@@ -31,9 +32,9 @@ public class TbCourseServiceImpl implements TbCourseService {
     }
 
     @Override
-    public List<TbCourse> selectByCourse(TbCourse course) {
-        List<TbCourse> list = tbCourseMapper.selectByCourse(course);
-        return list;
+    public List<String> selectByCourse(TbCourse course) {
+        List<String> maps = tbCourseMapper.selectByCourse(course);
+        return maps;
     }
 
     @Override

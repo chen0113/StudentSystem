@@ -1,17 +1,19 @@
 package com.ccxg.mapper;
 
 import com.ccxg.entity.TbScore;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 public interface TbScoreMapper {
-    int deleteByPrimaryKey(TbScore key);
 
-    int insert(TbScore record);
+    @Select("select * from tb_score")
+    List<TbScore> selectAll();
 
-    int insertSelective(TbScore record);
+    List<TbScore> selectByStudent(TbScore tbScore);
 
-    TbScore selectByPrimaryKey(TbScore key);
-
-    int updateByPrimaryKeySelective(TbScore record);
-
-    int updateByPrimaryKey(TbScore record);
+    @Insert("insert into tb_score (Student_ID, Student_Name, Course_Name, Score) values(#{studentId}, #{studentName}, #{courseName}, #{score})")
+    Integer addScore(TbScore tbScore);
 }

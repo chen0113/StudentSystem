@@ -52,11 +52,11 @@ public class TbCourseController {
         return new Response<>("1", "success", "删除课程失败");
     }
 
-    @PostMapping("detail")
-    public Response detail(@RequestBody TbCourse course){
-        List<TbCourse> list = tbCourseService.selectByCourse(course);
-        return new Response<>("0", "success", list);
-    }
+//    @PostMapping("detail")
+//    public Response detail(@RequestBody TbCourse course){
+//        List<TbCourse> list = tbCourseService.selectByCourse(course);
+//        return new Response<>("0", "success", list);
+//    }
 
     @PostMapping("search")
     public Response search(@RequestBody TbCourse course){
