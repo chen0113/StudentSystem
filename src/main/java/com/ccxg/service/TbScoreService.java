@@ -13,4 +13,6 @@ public interface TbScoreService {
     Integer addScore(TbScore tbScore);
 
     Integer updateScore(TbScore tbScore);
+
+    Integer deleteScore(TbScore tbScore);
 }

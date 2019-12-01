@@ -42,4 +42,10 @@ public class TbScoreServiceImpl implements TbScoreService {
 
         return tbScoreMapper.updateScore(tbScore);
     }
+
+    @Override
+    public Integer deleteScore(TbScore tbScore) {
+
+        return tbScoreMapper.deleteScore(tbScore);
+    }
 }

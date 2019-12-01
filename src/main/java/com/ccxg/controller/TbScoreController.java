@@ -70,6 +70,15 @@ public class TbScoreController {
         }
         return new Response<>("1", "failed", "更新失败");
     }
+    @RequestMapping("/deleteScore")
+    public Response<Object> deleteScore(TbScore tbScore) {
+
+        Integer integer = tbScoreService.deleteScore(tbScore);
+        if (integer == 1) {
+            return new Response<>("0", "success", "删除成功");
+        }
+        return new Response<>("1", "failed", "删除失败");
+    }
 
     @RequestMapping("/getInfo")
     public Response<Object> getInfo(@RequestParam("studentId") String studentId) {
@@ -91,6 +100,5 @@ public class TbScoreController {
         }
         return new Response<>("1", "failed", "学号不存在");
     }
-
 
 }

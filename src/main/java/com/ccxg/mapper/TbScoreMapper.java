@@ -1,10 +1,7 @@
 package com.ccxg.mapper;
 
 import com.ccxg.entity.TbScore;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -20,4 +17,7 @@ public interface TbScoreMapper {
 
     @Update("update tb_score set Score = #{score}")
     Integer updateScore(TbScore tbScore);
+
+    @Delete("delete from tb_score where Student_ID = #{studentId} and Course_Name = #{courseName}")
+    Integer deleteScore(TbScore tbScore);
 }
