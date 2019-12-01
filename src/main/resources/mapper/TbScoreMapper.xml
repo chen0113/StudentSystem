@@ -6,13 +6,13 @@
         select * from tb_score
         <where>
             <if test="studentId != null">
-                and Student_ID = #{studentId}
+                and Student_ID like #{studentId}
             </if>
             <if test="studentName != null">
-                and Student_Name = #{studentName}
+                and Student_Name like #{studentName}
             </if>
             <if test="courseName != null">
-                and Course_Name = #{courseName}
+                and Course_Name like #{courseName}
             </if>
         </where>
     </select>
