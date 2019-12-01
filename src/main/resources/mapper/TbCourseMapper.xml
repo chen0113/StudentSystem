@@ -43,4 +43,22 @@
       </if>
     </trim>
   </insert>
+
+
+  <select id="search" parameterType="com.ccxg.entity.TbCourse" resultMap="BaseResultMap">
+    select *
+    from tb_course
+    <where>
+      <if test="courseName != null">
+         Course_Name = #{courseName,jdbcType=VARCHAR}
+      </if>
+      <if test="grade != null">
+        and Grade = #{grade,jdbcType=INTEGER}
+      </if>
+      <if test="majorId != null">
+        and Major_ID = #{majorId,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
 </mapper>

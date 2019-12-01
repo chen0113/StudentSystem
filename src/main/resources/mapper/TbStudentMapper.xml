@@ -131,4 +131,19 @@
       Department_Name = #{departmentName,jdbcType=VARCHAR}
     where Student_ID = #{studentId,jdbcType=VARCHAR}
   </update>
+
+  <select id="search" parameterType="com.ccxg.entity.TbStudent" resultMap="BaseResultMap">
+    select *
+    from tb_student
+    <where>
+      <if test="departmentId != null">
+        Department_ID = #{departmentId,jdbcType=VARCHAR}
+      </if>
+      <if test="departmentName != null">
+        and Department_Name = #{departmentName,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
+
 </mapper>

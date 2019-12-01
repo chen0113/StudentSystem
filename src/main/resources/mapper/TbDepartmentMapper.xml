@@ -49,4 +49,39 @@
     set Department_Name = #{departmentName,jdbcType=VARCHAR}
     where Department_ID = #{departmentId,jdbcType=VARCHAR}
   </update>
+
+  <select id="search" parameterType="com.ccxg.entity.TbDepartment" resultMap="BaseResultMap">
+    select *
+    from tb_department
+    <where>
+      <if test="studentId != null">
+        and Student_ID = #{studentId,jdbcType=VARCHAR}
+      </if>
+      <if test="studentName != null">
+        and Student_Name = #{studentName,jdbcType=VARCHAR}
+      </if>
+      <if test="studentSex != null">
+        and Student_Sex = #{studentSex,jdbcType=CHAR}
+      </if>
+      <if test="grade != null">
+        and Grade = #{grade,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null">
+        and Class_ID = #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="majorId != null">
+        and Major_ID = #{majorId,jdbcType=VARCHAR}
+      </if>
+      <if test="majorName != null">
+        and Major_Name = #{majorName,jdbcType=VARCHAR}
+      </if>
+      <if test="departmentId != null">
+        and Department_ID = #{departmentId,jdbcType=VARCHAR}
+      </if>
+      <if test="departmentName != null">
+        and Department_Name = #{departmentName,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
 </mapper>
