@@ -61,6 +61,16 @@ public class TbScoreController {
         return new Response<>("1", "failed", "插入失败");
     }
 
+    @RequestMapping("/updateScore")
+    public Response<Object> updateScore(TbScore tbScore) {
+
+        Integer integer = tbScoreService.updateScore(tbScore);
+        if (integer == 1) {
+            return new Response<>("0", "success", "更新成功");
+        }
+        return new Response<>("1", "failed", "更新失败");
+    }
+
     @RequestMapping("/getInfo")
     public Response<Object> getInfo(@RequestParam("studentId") String studentId) {
 

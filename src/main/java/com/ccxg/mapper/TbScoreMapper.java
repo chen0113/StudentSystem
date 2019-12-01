@@ -4,6 +4,7 @@ import com.ccxg.entity.TbScore;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -16,4 +17,7 @@ public interface TbScoreMapper {
 
     @Insert("insert into tb_score (Student_ID, Student_Name, Course_Name, Score) values(#{studentId}, #{studentName}, #{courseName}, #{score})")
     Integer addScore(TbScore tbScore);
+
+    @Update("update tb_score set Score = #{score}")
+    Integer updateScore(TbScore tbScore);
 }

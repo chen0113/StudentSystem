@@ -11,4 +11,6 @@ public interface TbScoreService {
     List<TbScore> getByStudent(TbScore tbScore);
 
     Integer addScore(TbScore tbScore);
+
+    Integer updateScore(TbScore tbScore);
 }
