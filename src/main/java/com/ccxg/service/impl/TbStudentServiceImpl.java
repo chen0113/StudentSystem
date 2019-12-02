@@ -3,6 +3,8 @@ package com.ccxg.service.impl;
 import com.ccxg.entity.TbStudent;
 import com.ccxg.mapper.TbStudentMapper;
 import com.ccxg.service.TbStudentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +18,11 @@ public class TbStudentServiceImpl implements TbStudentService {
     private TbStudentMapper tbStudentMapper;
 
     @Override
-    public List<TbStudent> findByMap() {
+    public PageInfo<TbStudent> findByMap() {
+        PageHelper.startPage(1, 10);
         List<TbStudent> list = tbStudentMapper.selectAll();
-        return list;
+        PageInfo<TbStudent> pageInfo = new PageInfo<>(list);
+        return pageInfo;
     }
 
     @Override

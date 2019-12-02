@@ -1,11 +1,12 @@
 package com.ccxg.service;
 
 import com.ccxg.entity.TbStudent;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 public interface TbStudentService {
-    List<TbStudent> findByMap();
+    PageInfo<TbStudent> findByMap();
     int insert(TbStudent student);
     int update(TbStudent student);
     int deleteById(String id);

@@ -3,6 +3,8 @@ package com.ccxg.controller;
 import com.ccxg.entity.TbStudent;
 import com.ccxg.service.TbStudentService;
 import com.ccxg.util.Response;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
  * @author 谢陈
  */
 @RestController
+
+
 @RequestMapping("/student/management")
 public class TbStudentController {
     @Resource
@@ -18,8 +22,8 @@ public class TbStudentController {
 
     @GetMapping("list")
     public Response list() {
-        List<TbStudent> list = tbStudentService.findByMap();
-        return new Response<>("0", "success", list);
+        PageInfo<TbStudent> pageInfo = tbStudentService.findByMap();
+        return new Response<>("0", "success", pageInfo);
     }
 
     @PostMapping("add")

@@ -61,9 +61,9 @@ public class TbScoreController {
         TbScore tbScore = new TbScore();
         TbStudent tbStudent = new TbStudent();
         List<TbScore> tbScores = new ArrayList<>();
-        TbMajor tbMajor = tbMajorService.selectById(id);
-        String majorId = tbMajor.getMajorId();
-        tbStudent.setMajorId(majorId);
+//        TbMajor tbMajor = tbMajorService.selectById(id);
+//        String majorId = tbMajor.getMajorId();
+        tbStudent.setMajorId(id);
         List<TbStudent> tbStudents = tbStudentService.search(tbStudent);
         for (TbStudent tbStudent1 : tbStudents) {
             String studentId = tbStudent1.getStudentId();

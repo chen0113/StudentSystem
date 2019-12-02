@@ -142,6 +142,9 @@
       <if test="departmentName != null">
         and Department_Name like #{departmentName,jdbcType=VARCHAR}
       </if>
+      <if test="majorId != null">
+        and Major_Id like #{majorId,jdbcType=VARCHAR}
+      </if>
     </where>
 
   </select>
