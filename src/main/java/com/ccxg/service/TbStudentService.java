@@ -6,7 +6,7 @@ import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 public interface TbStudentService {
-    PageInfo<TbStudent> findByMap();
+    PageInfo<TbStudent> findByMap(String pageNum, String pageSize);
     int insert(TbStudent student);
     int update(TbStudent student);
     int deleteById(String id);

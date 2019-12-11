@@ -18,7 +18,7 @@ public class TbStudentServiceImpl implements TbStudentService {
     private TbStudentMapper tbStudentMapper;
 
     @Override
-    public PageInfo<TbStudent> findByMap() {
+    public PageInfo<TbStudent> findByMap(String pageNum, String pageSize) {
         PageHelper.startPage(1, 10);
         List<TbStudent> list = tbStudentMapper.selectAll();
         PageInfo<TbStudent> pageInfo = new PageInfo<>(list);
@@ -27,7 +27,7 @@ public class TbStudentServiceImpl implements TbStudentService {
 
     @Override
     public int insert(TbStudent student) {
-        return tbStudentMapper.insert(student);
+        return tbStudentMapper.insertSelective(student);
     }
 
     @Override

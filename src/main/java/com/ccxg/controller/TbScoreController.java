@@ -34,7 +34,7 @@ public class TbScoreController {
 
     @RequestMapping("/getAll")
     public Response<Object> getAll(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-                                   @RequestParam(value = "pageSize", defaultValue = "20") int pageSize) {
+                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
 
         PageHelper.startPage(pageNum, pageSize);
         List<TbScore> tbScores = tbScoreService.getAll();

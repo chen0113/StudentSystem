@@ -34,9 +34,10 @@
       #{classId,jdbcType=INTEGER}, #{majorId,jdbcType=VARCHAR}, #{majorName,jdbcType=VARCHAR}, 
       #{departmentId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="Student_ID" keyProperty="studentId" parameterType="com.ccxg.entity.TbStudent" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.ccxg.entity.TbStudent">
     insert into tb_student
     <trim prefix="(" suffix=")" suffixOverrides=",">
+        Student_ID,
       <if test="studentName != null">
         Student_Name,
       </if>
@@ -63,6 +64,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+        #{studentId,jdbcType=VARCHAR},
       <if test="studentName != null">
         #{studentName,jdbcType=VARCHAR},
       </if>

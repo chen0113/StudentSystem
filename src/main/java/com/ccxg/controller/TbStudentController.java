@@ -3,7 +3,6 @@ package com.ccxg.controller;
 import com.ccxg.entity.TbStudent;
 import com.ccxg.service.TbStudentService;
 import com.ccxg.util.Response;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -21,8 +20,9 @@ public class TbStudentController {
     private TbStudentService tbStudentService;
 
     @GetMapping("list")
-    public Response list() {
-        PageInfo<TbStudent> pageInfo = tbStudentService.findByMap();
+    public Response list(@RequestParam(value = "pageNum", defaultValue = "1") String pageNum,
+                         @RequestParam(value = "pageSize", defaultValue = "10") String pageSize) {
+        PageInfo<TbStudent> pageInfo = tbStudentService.findByMap(pageNum, pageSize);
         return new Response<>("0", "success", pageInfo);
     }
 
