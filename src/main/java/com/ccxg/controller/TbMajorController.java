@@ -1,12 +1,17 @@
 package com.ccxg.controller;
 
+import com.ccxg.entity.TbDepartment;
 import com.ccxg.entity.TbMajor;
+import com.ccxg.service.TbDepartmentService;
 import com.ccxg.service.TbMajorService;
 import com.ccxg.util.Response;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/major/management")
@@ -14,10 +19,33 @@ public class TbMajorController {
     @Resource
     private TbMajorService tbMajorService;
 
+    @Resource
+    private TbDepartmentService tbDepartmentService;
+
     @GetMapping("list")
-    public Response list(String departmentId) {
-        List<TbMajor> list = tbMajorService.findByDepartmentId(departmentId);
-        return new Response<>("0", "success", list);
+    public Response list() {
+        List<TbDepartment> tbDepartments = tbDepartmentService.findByMap();
+        List<Map<String, Object>> majorDepartment = new ArrayList<>();
+        for (TbDepartment tbDepartment : tbDepartments) {
+            List<TbMajor> list = tbMajorService.findByDepartmentId(tbDepartment.getDepartmentId());
+            List<Map<String, Object>> tbMajors = new ArrayList<>();
+            for (TbMajor tbMajor : list) {
+                Map<String, Object> map = new HashMap<>();
+                String majorId = tbMajor.getMajorId();
+                if (majorId != null && majorId.startsWith("0")) {
+                    majorId = majorId.split("0")[1];
+                    tbMajor.setMajorId(majorId);
+                }
+                map.put("id", tbMajor.getMajorId());
+                map.put("text", tbMajor.getMajorName());
+                tbMajors.add(map);
+            }
+            Map<String, Object> major = new HashMap<>();
+            major.put("children", tbMajors);
+            major.put("text", tbDepartment.getDepartmentName());
+            majorDepartment.add(major);
+        }
+        return new Response<>("0", "success", majorDepartment);
     }
 
     @PostMapping("add")
