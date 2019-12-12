@@ -19,7 +19,7 @@ public class TbStudentServiceImpl implements TbStudentService {
 
     @Override
     public PageInfo<TbStudent> findByMap(String pageNum, String pageSize) {
-        PageHelper.startPage(1, 10);
+        PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
         List<TbStudent> list = tbStudentMapper.selectAll();
         PageInfo<TbStudent> pageInfo = new PageInfo<>(list);
         return pageInfo;
