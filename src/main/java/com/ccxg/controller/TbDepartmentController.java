@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * @author 谢陈
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/department/management")
 public class TbDepartmentController {

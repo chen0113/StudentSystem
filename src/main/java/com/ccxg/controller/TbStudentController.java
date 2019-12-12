@@ -12,7 +12,7 @@ import java.util.List;
  * @author 谢陈
  */
 @RestController
-
+@CrossOrigin
 
 @RequestMapping("/student/management")
 public class TbStudentController {
