@@ -49,6 +49,35 @@ public class TbMajorController {
         return new Response<>("0", "success", majorDepartment);
     }
 
+    @GetMapping("webList")
+    public Response webList() {
+        List<TbDepartment> tbDepartments = tbDepartmentService.findByMap();
+        List<Map<String, Object>> majorDepartment = new ArrayList<>();
+        for (TbDepartment tbDepartment : tbDepartments) {
+            List<TbMajor> list = tbMajorService.findByDepartmentId(tbDepartment.getDepartmentId());
+            List<Map<String, Object>> tbMajors = new ArrayList<>();
+            for (TbMajor tbMajor : list) {
+                Map<String, Object> map = new HashMap<>();
+                String majorId = tbMajor.getMajorId();
+//                if (majorId != null && majorId.startsWith("0")) {
+//                    majorId = majorId.split("0")[1];
+//                    tbMajor.setMajorId(majorId);
+//                }
+                map.put("id", tbMajor.getMajorId());
+                map.put("value", tbMajor.getMajorName());
+                map.put("label", tbMajor.getMajorName());
+                tbMajors.add(map);
+            }
+            Map<String, Object> major = new HashMap<>();
+            major.put("children", tbMajors);
+            major.put("value", tbDepartment.getDepartmentName());
+            major.put("label", tbDepartment.getDepartmentName());
+            major.put("id", tbDepartment.getDepartmentId());
+            majorDepartment.add(major);
+        }
+        return new Response<>("0", "success", majorDepartment);
+    }
+
     @PostMapping("add")
     public Response add(@RequestBody TbMajor major) {
         if (major.getDepartmentId() == null) {
