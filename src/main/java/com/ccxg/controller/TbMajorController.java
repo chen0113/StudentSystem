@@ -43,6 +43,7 @@ public class TbMajorController {
             Map<String, Object> major = new HashMap<>();
             major.put("children", tbMajors);
             major.put("text", tbDepartment.getDepartmentName());
+            major.put("id", tbDepartment.getDepartmentId());
             majorDepartment.add(major);
         }
         return new Response<>("0", "success", majorDepartment);
