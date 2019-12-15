@@ -55,13 +55,13 @@
     from tb_department
     <where>
       <if test="departmentId != null and departmentId!= ''">
-        Department_ID like #{departmentId,jdbcType=VARCHAR}
+        Department_ID like "%"#{departmentId,jdbcType=VARCHAR}"%"
       </if>
       <if test="departmentName != null and departmentName!= ''">
-        and Department_Name like #{departmentName,jdbcType=VARCHAR}
+        and Department_Name like "%"#{departmentName,jdbcType=VARCHAR}"%"
       </if>
       <if test="majorId != null and majorId!= ''">
-        and Major_Id like #{majorId,jdbcType=VARCHAR}
+        and Major_Id like "%"#{majorId,jdbcType=VARCHAR}"%"
       </if>
     </where>
 
