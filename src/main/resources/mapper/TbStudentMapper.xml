@@ -138,16 +138,35 @@
     select *
     from tb_student
     <where>
-      <if test="departmentId != null">
-        Department_ID like #{departmentId,jdbcType=VARCHAR}
+      <if test="studentId != null and studentId != ''">
+        and Student_ID like #{studentId,jdbcType=VARCHAR}
       </if>
-      <if test="departmentName != null">
+      <if test="studentName != null and studentName != ''">
+        and Student_Name like #{studentName,jdbcType=VARCHAR}
+      </if>
+      <if test="studentSex != null and studentSex != ''">
+        and Student_Sex = #{studentSex,jdbcType=CHAR}
+      </if>
+      <if test="grade != null and grade != ''">
+        and Grade like #{grade,jdbcType=INTEGER}
+      </if>
+      <if test="classId != null and classId != ''">
+        and Class_ID like #{classId,jdbcType=INTEGER}
+      </if>
+      <if test="majorId != null and majorId != ''">
+        and Major_ID like #{majorId,jdbcType=VARCHAR}
+      </if>
+      <if test="majorName != null and majorName != ''">
+        and Major_Name like #{majorName,jdbcType=VARCHAR}
+      </if>
+      <if test="departmentId != null">
+        and Department_ID like #{departmentId,jdbcType=VARCHAR}
+      </if>
+      <if test="departmentName != null and departmentName != ''">
         and Department_Name like #{departmentName,jdbcType=VARCHAR}
       </if>
-      <if test="majorId != null">
-        and Major_Id like #{majorId,jdbcType=VARCHAR}
-      </if>
     </where>
+
 
   </select>
 
