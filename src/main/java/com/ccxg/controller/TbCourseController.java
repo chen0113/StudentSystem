@@ -1,9 +1,12 @@
 package com.ccxg.controller;
 
 import com.ccxg.entity.TbCourse;
+import com.ccxg.entity.TbScore;
 import com.ccxg.entity.TbStudent;
 import com.ccxg.service.TbCourseService;
 import com.ccxg.util.Response;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,9 +23,15 @@ public class TbCourseController {
     private TbCourseService tbCourseService;
 
     @GetMapping("list")
-    public Response list() {
-        List<TbCourse> list = tbCourseService.findByMap();
-        return new Response<>("0", "success", list);
+    public Response list(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                         @RequestParam(value = "pageSize", defaultValue = "15") Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<TbCourse> tbCourses = tbCourseService.findByMap();
+        if (tbCourses != null && tbCourses.size() != 0) {
+            PageInfo<TbCourse> pageInfo = new PageInfo<>(tbCourses);
+            return new Response<>("0", "success", pageInfo);
+        }
+        return new Response<>("1", "failed", "未找到成绩");
     }
 
     @PostMapping("add")

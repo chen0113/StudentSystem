@@ -21,7 +21,7 @@ public class TbStudentController {
 
     @GetMapping("list")
     public Response list(@RequestParam(value = "pageNum", defaultValue = "1") String pageNum,
-                         @RequestParam(value = "pageSize", defaultValue = "10") String pageSize) {
+                         @RequestParam(value = "pageSize", defaultValue = "15") String pageSize) {
         PageInfo<TbStudent> pageInfo = tbStudentService.findByMap(pageNum, pageSize);
         return new Response<>("0", "success", pageInfo);
     }

@@ -49,14 +49,14 @@
     select *
     from tb_course
     <where>
-      <if test="courseName != null">
-         Course_Name like #{courseName,jdbcType=VARCHAR}
+      <if test="courseName != null and courseName !=''">
+         Course_Name like "%"#{courseName,jdbcType=VARCHAR}"%"
       </if>
-      <if test="grade != null">
-        and Grade like #{grade,jdbcType=INTEGER}
+      <if test="grade != null and grade !=''">
+        and Grade like "%"#{grade,jdbcType=INTEGER}"%"
       </if>
-      <if test="majorId != null">
-        and Major_ID like #{majorId,jdbcType=VARCHAR}
+      <if test="majorId != null and majorId !=''">
+        and Major_ID like "%"#{majorId,jdbcType=VARCHAR}"%"
       </if>
     </where>
 
