@@ -1,12 +1,17 @@
 package com.ccxg.controller;
 
 import com.ccxg.entity.TbDepartment;
+import com.ccxg.entity.TbMajor;
 import com.ccxg.service.TbDepartmentService;
+import com.ccxg.service.TbMajorService;
 import com.ccxg.util.Response;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 谢陈
@@ -18,10 +23,30 @@ public class TbDepartmentController {
     @Resource
     private TbDepartmentService tbDepartmentService;
 
+    @Resource
+    private TbMajorService tbMajorService;
+
     @GetMapping("list")
     public Response list() {
+
         List<TbDepartment> list = tbDepartmentService.findByMap();
-        return new Response<>("0", "success", list);
+        List<Map<String, Object>> majorDepartment = new ArrayList<>();
+        for (TbDepartment tbDepartment : list) {
+            List<TbMajor> list1 = tbMajorService.findByDepartmentId(tbDepartment.getDepartmentId());
+            List<Map<String, Object>> tbMajors = new ArrayList<>();
+            for (TbMajor tbMajor : list1) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("majorId", tbMajor.getMajorId());
+                map.put("majorName", tbMajor.getMajorName());
+                tbMajors.add(map);
+            }
+            Map<String, Object> major = new HashMap<>();
+            major.put("children", tbMajors);
+            major.put("departmentName", tbDepartment.getDepartmentName());
+            major.put("departmentId", tbDepartment.getDepartmentId());
+            majorDepartment.add(major);
+        }
+        return new Response<>("0", "success", majorDepartment);
     }
 
     @PostMapping("add")
@@ -78,6 +103,22 @@ public class TbDepartmentController {
     @PostMapping("search")
     public Response search(@RequestBody TbDepartment department){
         List<TbDepartment> list = tbDepartmentService.search(department);
-        return new Response<>("0", "success", list);
+        List<Map<String, Object>> majorDepartment = new ArrayList<>();
+        for (TbDepartment tbDepartment : list) {
+            List<TbMajor> list1 = tbMajorService.findByDepartmentId(tbDepartment.getDepartmentId());
+            List<Map<String, Object>> tbMajors = new ArrayList<>();
+            for (TbMajor tbMajor : list1) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("majorId", tbMajor.getMajorId());
+                map.put("majorName", tbMajor.getMajorName());
+                tbMajors.add(map);
+            }
+            Map<String, Object> major = new HashMap<>();
+            major.put("children", tbMajors);
+            major.put("departmentName", tbDepartment.getDepartmentName());
+            major.put("departmentId", tbDepartment.getDepartmentId());
+            majorDepartment.add(major);
+        }
+        return new Response<>("0", "success", majorDepartment);
     }
 }

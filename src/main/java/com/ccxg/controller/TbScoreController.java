@@ -6,10 +6,7 @@ import com.ccxg.util.Response;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -36,7 +33,7 @@ public class TbScoreController {
 
     @RequestMapping("/getAll")
     public Response<Object> getAll(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-                                   @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+                                   @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
 
         PageHelper.startPage(pageNum, pageSize);
         List<TbScore> tbScores = tbScoreService.getAll();
@@ -48,7 +45,7 @@ public class TbScoreController {
     }
 
     @RequestMapping("/getByStudent")
-    public Response<Object> getByStudent(TbScore tbScore) {
+    public Response<Object> getByStudent(@RequestBody TbScore tbScore) {
 
         List<TbScore> tbScores = tbScoreService.getByStudent(tbScore);
         if (tbScores != null && tbScores.size() != 0) {
@@ -80,7 +77,7 @@ public class TbScoreController {
     }
 
     @RequestMapping("/addScore")
-    public Response<Object> addScore(TbScore tbScore) {
+    public Response<Object> addScore(@RequestBody TbScore tbScore) {
 
         Integer integer = tbScoreService.addScore(tbScore);
         if (integer == 1) {
@@ -90,7 +87,7 @@ public class TbScoreController {
     }
 
     @RequestMapping("/updateScore")
-    public Response<Object> updateScore(TbScore tbScore) {
+    public Response<Object> updateScore(@RequestBody TbScore tbScore) {
 
         Integer integer = tbScoreService.updateScore(tbScore);
         if (integer == 1) {
@@ -100,7 +97,7 @@ public class TbScoreController {
     }
 
     @RequestMapping("/deleteScore")
-    public Response<Object> deleteScore(TbScore tbScore) {
+    public Response<Object> deleteScore(@RequestBody TbScore tbScore) {
 
         Integer integer = tbScoreService.deleteScore(tbScore);
         if (integer == 1) {

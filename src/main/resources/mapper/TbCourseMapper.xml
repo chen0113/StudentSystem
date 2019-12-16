@@ -13,9 +13,9 @@
       and Grade = #{grade,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ccxg.entity.TbCourse">
-    insert into tb_course (Course_Name, Major_ID, Grade
+    insert into tb_course (Course_ID,Course_Name, Major_ID, Grade
       )
-    values (#{courseName,jdbcType=VARCHAR}, #{majorId,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}
+    values (#{courseId,jdbcType=VARCHAR},#{courseName,jdbcType=VARCHAR}, #{majorId,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ccxg.entity.TbCourse">

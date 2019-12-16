@@ -25,6 +25,26 @@ public class TbStudent implements Serializable {
 
     private String departmentName;
 
+    private Integer pageNum;
+
+    private Integer pageSize;
+
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public String getStudentId() {

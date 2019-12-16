@@ -7,6 +7,8 @@ import java.io.Serializable;
  * @author 
  */
 public class TbCourse implements Serializable {
+    private String courseId;
+
     private String courseName;
 
     private String majorId;
@@ -16,6 +18,14 @@ public class TbCourse implements Serializable {
     private Integer pageNum;
 
     private Integer pageSize;
+
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
 
     public Integer getPageNum() {
         return pageNum;

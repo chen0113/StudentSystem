@@ -19,8 +19,8 @@
     where Department_ID = #{departmentId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="Department_ID" keyProperty="departmentId" parameterType="com.ccxg.entity.TbDepartment" useGeneratedKeys="true">
-    insert into tb_department (Department_Name)
-    values (#{departmentName,jdbcType=VARCHAR})
+    insert into tb_department (Department_ID,Department_Name)
+    values (#{departmentId,jdbcType=VARCHAR},#{departmentName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="Department_ID" keyProperty="departmentId" parameterType="com.ccxg.entity.TbDepartment" useGeneratedKeys="true">
     insert into tb_department
@@ -59,9 +59,6 @@
       </if>
       <if test="departmentName != null and departmentName!= ''">
         and Department_Name like "%"#{departmentName,jdbcType=VARCHAR}"%"
-      </if>
-      <if test="majorId != null and majorId!= ''">
-        and Major_Id like "%"#{majorId,jdbcType=VARCHAR}"%"
       </if>
     </where>
 
